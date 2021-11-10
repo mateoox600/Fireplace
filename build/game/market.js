@@ -10,28 +10,18 @@ const router = express_1.Router();
 router.get('/sell', (req, res) => {
     const player = PlayerManager_1.default.getPlayer(req.headers.token);
     const itemId = req.query.itemId;
-    const itemNumber = Math.floor(Number(req.query.number));
-    if (!itemId) {
-        res.status(400).send('This endpoint require an item id !');
-        return;
-    }
-    if (!req.query.number) {
-        res.status(400).send('This endpoint require an item number !');
-        return;
-    }
-    if (isNaN(itemNumber) || itemNumber <= 0) {
-        res.status(400).send('This endpoint require a valid item number !');
-        return;
-    }
+    if (!itemId)
+        return res.status(400).send('This endpoint require an item id !');
     const item = Item_1.Items.find((item) => item.id === itemId);
-    if (!item) {
-        res.status(400).send('This endpoint require a valid item id !');
-        return;
-    }
-    if (player.inventory[item.id] < itemNumber) {
-        res.status(400).send(`You don't have ${itemNumber} ${item.name} !`);
-        return;
-    }
+    if (!item)
+        return res.status(400).send('This endpoint require a valid item id !');
+    const itemNumber = Math.floor(Number(req.query.number));
+    if (!req.query.number)
+        return res.status(400).send('This endpoint require an item number !');
+    if (isNaN(itemNumber) || itemNumber <= 0)
+        return res.status(400).send('This endpoint require a valid item number !');
+    if (player.inventory[item.id] < itemNumber)
+        return res.status(400).send(`You don't have ${itemNumber} ${item.name} !`);
     player.inventory[item.id] -= itemNumber;
     player.coins += item.value * itemNumber;
     PlayerManager_1.default.updatePlayer(player);

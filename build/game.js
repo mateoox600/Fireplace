@@ -14,11 +14,8 @@ router.get('/', (req, res) => {
 });
 router.get('/mine', (req, res) => {
     const player = PlayerManager_1.default.getPlayer(req.headers.token);
-    if (player.cooldown.mining.last + player.cooldown.mining.time > Date.now()) {
-        const delayLeft = player.cooldown.mining.last + player.cooldown.mining.time - Date.now();
-        res.status(429).setHeader('Retry-After', delayLeft).send();
-        return;
-    }
+    if (player.cooldown.mining.last + player.cooldown.mining.time > Date.now())
+        return res.status(429).setHeader('Retry-After', player.cooldown.mining.last + player.cooldown.mining.time - Date.now()).send();
     const randCoins = Math.floor(Math.random() * 10) + 5;
     const randTime = Math.floor((Math.random() * 10 + 5) * 1000);
     player.coins += randCoins;
@@ -33,20 +30,14 @@ router.get('/mine', (req, res) => {
 });
 router.get('/hunt', (req, res) => {
     const player = PlayerManager_1.default.getPlayer(req.headers.token);
-    if (player.health < 1) {
-        res.send('you don\'t have enough health to do that !');
-        return;
-    }
+    if (player.health < 1)
+        return res.send('you don\'t have enough health to do that !');
     const entityId = req.query.entityId;
-    if (!entityId) {
-        res.status(400).send('This endpoint require an huntable entity id !');
-        return;
-    }
+    if (!entityId)
+        return res.status(400).send('This endpoint require an huntable entity id !');
     const entity = HuntableEntity_1.HuntableEntities.find((entity) => entity.id === entityId);
-    if (!entity) {
-        res.status(404).send('This entity doesn\'t exist or it isn\'t an huntable entity !');
-        return;
-    }
+    if (!entity)
+        return res.status(404).send('This entity doesn\'t exist or it isn\'t an huntable entity !');
     let entityHealth = Math.floor(entity.health.rand());
     while (entityHealth > 0 && player.health > 0) {
         player.health = Math.floor(Math.max(player.health - Math.max(entity.attack.rand() - Range_1.default.rand(player.defense), 0), 0));

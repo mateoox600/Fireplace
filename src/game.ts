@@ -16,17 +16,18 @@ router.get('/', (req, res) => {
 
 router.get('/mine', (req, res) => {
     const player = PlayerManager.getPlayer(req.headers.token as string);
-    if(player.cooldown.mining.last + player.cooldown.mining.time > Date.now()) {
-        const delayLeft = player.cooldown.mining.last + player.cooldown.mining.time - Date.now();
-        res.status(429).setHeader('Retry-After', delayLeft).send();
-        return;
-    }
+
+    if(player.cooldown.mining.last + player.cooldown.mining.time > Date.now()) return res.status(429).setHeader('Retry-After', player.cooldown.mining.last + player.cooldown.mining.time - Date.now()).send();
+    
     const randCoins = Math.floor(Math.random() * 10) + 5;
     const randTime = Math.floor((Math.random() * 10 + 5) * 1000);
+
     player.coins += randCoins;
     player.cooldown.mining.last = Date.now();
     player.cooldown.mining.time = randTime;
+
     PlayerManager.updatePlayer(player);
+
     res.json({
         gain: randCoins,
         time: Date.now(),
@@ -37,24 +38,15 @@ router.get('/mine', (req, res) => {
 router.get('/hunt', (req, res) => {
     const player = PlayerManager.getPlayer(req.headers.token as string);
 
-    if(player.health < 1) {
-        res.send('you don\'t have enough health to do that !');
-        return;
-    }
+    if(player.health < 1) return res.send('you don\'t have enough health to do that !');
 
     const entityId = req.query.entityId;
 
-    if(!entityId) {
-        res.status(400).send('This endpoint require an huntable entity id !');
-        return;
-    }
+    if(!entityId) return res.status(400).send('This endpoint require an huntable entity id !');
 
     const entity = HuntableEntities.find((entity) => entity.id === entityId);
 
-    if(!entity) {
-        res.status(404).send('This entity doesn\'t exist or it isn\'t an huntable entity !');
-        return;
-    }
+    if(!entity) return res.status(404).send('This entity doesn\'t exist or it isn\'t an huntable entity !');
 
     let entityHealth = Math.floor(entity.health.rand());
 
@@ -74,13 +66,16 @@ router.get('/hunt', (req, res) => {
                 return { id: v.id, n: Math.floor(v.range.rand()) };
             })
         };
+
         player.coins += rewards.coins;
         player.xp += rewards.xp;
         player.health = Math.min(player.health + rewards.health, PlayerManager.calculateMaxHealth(player));
+
         rewards.items.forEach((i) => {
             if(player.inventory[i.id]) player.inventory[i.id] += i.n;
             else player.inventory[i.id] = i.n;
         });
+        
         res.json({
             rewards
         });

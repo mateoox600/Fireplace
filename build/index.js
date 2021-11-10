@@ -14,14 +14,10 @@ const app = express_1.default();
 exports.players = new node_json_db_1.JsonDB(new JsonDBConfig_1.Config('players', true, false, '/'));
 const needToken = (req, res, next) => {
     const token = req.headers.token;
-    if (!token) {
-        res.status(400).send('This endpoint require an token !');
-        return;
-    }
-    if (!PlayerManager_1.default.playerExist(token)) {
-        res.status(403).send('This token isn\'t valid !');
-        return;
-    }
+    if (!token)
+        return res.status(400).send('This endpoint require an token !');
+    if (!PlayerManager_1.default.playerExist(token))
+        return res.status(403).send('This token isn\'t valid !');
     next();
 };
 app.get('/new', (req, res) => {

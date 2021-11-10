@@ -6,10 +6,8 @@ const HuntableEntity_1 = require("../data/entities/HuntableEntity");
 const router = express_1.Router();
 router.get('/', (req, res) => {
     const entityId = req.query.entityId;
-    if (!entityId) {
-        res.status(400).send('This endpoint require an entity id !');
-        return;
-    }
+    if (!entityId)
+        return res.status(400).send('This endpoint require an entity id !');
     res.json(Entity_1.Entities.find((entity) => entity.id === entityId));
 });
 router.get('/list', (req, res) => {
