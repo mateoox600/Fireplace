@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { HuntableEntities } from './data/entities/HuntableEntity';
 import PlayerManager from './players/PlayerManager';
+import Range from './utils/Range';
 
 const router = Router();
 
@@ -43,11 +44,17 @@ router.get('/hunt', (req, res) => {
 
     const entityId = req.query.entityId;
 
-    if(!entityId) { res.status(400).send('This endpoint require an huntable entity id !'); return; }
+    if(!entityId) {
+        res.status(400).send('This endpoint require an huntable entity id !');
+        return;
+    }
 
     const entity = HuntableEntities.find((entity) => entity.id === entityId);
 
-    if(!entity) { res.status(404).send('This entity doesn\'t exist or it isn\'t an huntable entity !'); return; }
+    if(!entity) {
+        res.status(404).send('This entity doesn\'t exist or it isn\'t an huntable entity !');
+        return;
+    }
 
     let entityHealth = Math.floor(entity.health.rand());
 
@@ -88,7 +95,6 @@ import itemRouter from './game/item';
 router.use('/item/', itemRouter);
 
 import marketRouter from './game/market';
-import Range from './utils/Range';
-router.use('/market/', marketRouter)
+router.use('/market/', marketRouter);
 
 export default router;

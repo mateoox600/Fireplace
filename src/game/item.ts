@@ -6,7 +6,10 @@ const router = Router();
 router.get('/', (req, res) => {
     const itemId = req.query.itemId;
 
-    if(!itemId) { res.status(400).send('This endpoint require an item id !'); return; }
+    if(!itemId) {
+        res.status(400).send('This endpoint require an item id !');
+        return;
+    }
 
     res.json(Items.find((item) => item.id === itemId));
 });

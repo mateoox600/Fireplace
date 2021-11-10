@@ -1,4 +1,3 @@
-import Range from '../utils/Range';
 import TokenManager from '../utils/TokenManager';
 
 export default interface Player {
@@ -16,6 +15,7 @@ export default interface Player {
         }
     },
     inventory: { [id: string]: number }
+// eslint-disable-next-line semi
 }
 
 export function defaultPlayer(): Player {

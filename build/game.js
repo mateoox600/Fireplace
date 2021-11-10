@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const HuntableEntity_1 = require("./data/entities/HuntableEntity");
 const PlayerManager_1 = __importDefault(require("./players/PlayerManager"));
+const Range_1 = __importDefault(require("./utils/Range"));
 const router = express_1.Router();
 router.get('/', (req, res) => {
     const player = PlayerManager_1.default.getPlayer(req.headers.token);
@@ -84,6 +85,5 @@ router.use('/entity/', entity_1.default);
 const item_1 = __importDefault(require("./game/item"));
 router.use('/item/', item_1.default);
 const market_1 = __importDefault(require("./game/market"));
-const Range_1 = __importDefault(require("./utils/Range"));
 router.use('/market/', market_1.default);
 exports.default = router;

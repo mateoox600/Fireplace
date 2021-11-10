@@ -29,7 +29,7 @@ router.get('/sell', (req, res) => {
         return;
     }
     if (player.inventory[item.id] < itemNumber) {
-        res.status(400).send(`You don\'t have ${itemNumber} ${item.name} !`);
+        res.status(400).send(`You don't have ${itemNumber} ${item.name} !`);
         return;
     }
     player.inventory[item.id] -= itemNumber;

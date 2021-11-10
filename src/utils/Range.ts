@@ -4,7 +4,7 @@ export default class Range {
     constructor(public min: number, public max: number) { }
 
     rand() {
-        return Math.random() * ( this.max - this.min ) + this.min
+        return Math.random() * ( this.max - this.min ) + this.min;
     }
 
     toString() {

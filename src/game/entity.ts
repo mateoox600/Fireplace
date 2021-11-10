@@ -7,7 +7,10 @@ const router = Router();
 router.get('/', (req, res) => {
     const entityId = req.query.entityId;
 
-    if(!entityId) { res.status(400).send('This endpoint require an entity id !'); return; }
+    if(!entityId) {
+        res.status(400).send('This endpoint require an entity id !');
+        return;
+    }
 
     res.json(Entities.find((entity) => entity.id === entityId));
 });

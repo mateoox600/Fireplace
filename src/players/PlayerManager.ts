@@ -25,7 +25,7 @@ export default class PlayerManager {
     }
 
     public static calculateMaxHealth(player: Player) {
-        return 100 + Math.floor((this.calculateXpLevel(player) / 2)) * 5
+        return 100 + Math.floor((this.calculateXpLevel(player) / 2)) * 5;
     }
 
 }
