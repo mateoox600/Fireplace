@@ -6,8 +6,8 @@
     coins: number,
     health: number,
     xp: number,
-    attack: Range,
-    defense: Range,
+    attack: { min: number, max: number },
+    defense: { min: number, max: number },
     cooldown: {
         mining: {
             last: number,

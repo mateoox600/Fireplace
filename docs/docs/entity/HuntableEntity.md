@@ -1,16 +1,16 @@
 ## HuntableEntity extends Entity
 ```ts
 {
-    health: Range,
-    defense: Range,
-    attack: Range,
+    health: { min: number, max: number },
+    defense: { min: number, max: number },
+    attack: { min: number, max: number },
     rewards: {
-        coins: Range,
-        xp: Range,
-        health: Range,
+        coins: { min: number, max: number },
+        xp: { min: number, max: number },
+        health: { min: number, max: number },
         items: {
             id: string,
-            range: Range
+            range: { min: number, max: number }
         }[]
     }
 }
