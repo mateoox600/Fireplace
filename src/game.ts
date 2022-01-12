@@ -61,7 +61,6 @@ router.get('/hunt', (req, res) => {
         const rewards = {
             coins: Math.floor(entity.rewards.coins.rand()),
             xp: Math.floor(entity.rewards.xp.rand()),
-            health: Math.floor(entity.rewards.health.rand()),
             items: entity.rewards.items.map((v) => {
                 return { id: v.id, n: Math.floor(v.range.rand()) };
             })
@@ -69,7 +68,6 @@ router.get('/hunt', (req, res) => {
 
         player.coins += rewards.coins;
         player.xp += rewards.xp;
-        player.health = Math.min(player.health + rewards.health, PlayerManager.calculateMaxHealth(player));
 
         rewards.items.forEach((i) => {
             if(player.inventory[i.id]) player.inventory[i.id] += i.n;

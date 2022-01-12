@@ -1,3 +1,4 @@
+import Fur from './Fur';
 import MembraneItem from './MembraneItem';
 import SmallMobCoreItem from './SmallMobCoreItem';
 
@@ -10,5 +11,6 @@ export interface Item {
 
 export const Items: Item[] = [
     SmallMobCoreItem,
-    MembraneItem
+    MembraneItem,
+    Fur
 ];

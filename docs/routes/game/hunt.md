@@ -9,7 +9,6 @@ Returns:
 {
     coins: number,
     xp: number,
-    health: number,
     items: {
         [id: string]: number
     }

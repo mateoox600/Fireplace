@@ -1,6 +1,7 @@
 import Range from '../../utils/Range';
 import { Entity } from './Entity';
 import EntitySlime from './EntitySlime';
+import EntityWolf from './EntityWolf';
 
 export interface HuntableEntity extends Entity {
     health: Range,
@@ -9,11 +10,11 @@ export interface HuntableEntity extends Entity {
     rewards: {
         coins: Range,
         xp: Range,
-        health: Range,
         items: { id: string, range: Range }[]
     }
 }
 
 export const HuntableEntities: HuntableEntity[] = [
-    EntitySlime
+    EntitySlime,
+    EntityWolf
 ];

@@ -7,7 +7,6 @@
     rewards: {
         coins: { min: number, max: number },
         xp: { min: number, max: number },
-        health: { min: number, max: number },
         items: {
             id: string,
             range: { min: number, max: number }
