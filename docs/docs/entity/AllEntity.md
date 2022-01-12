@@ -1,0 +1,2 @@
+## AllEntity
+#### [Entity](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/entity/Entity.md), [HuntableEntity](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/entity/HuntableEntity.md)

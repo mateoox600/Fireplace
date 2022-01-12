@@ -4,11 +4,4 @@ Needs:
   - token in the headers
   - entityId in the query
   
-Returns:  
-```ts
-{
-    id: string,
-    name: string,
-    description: string
-} || HuntableEntity
-```
+Returns: [AllEntity](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/entity/AllEntity.md)

@@ -3,9 +3,4 @@
 Needs:  
   - token in the headers
   
-Returns:  
-```ts
-[
-    entityIds: string
-]
-```
+Returns: [AllEntity](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/entity/AllEntity.md) list

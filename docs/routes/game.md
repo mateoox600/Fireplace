@@ -3,30 +3,4 @@
 Needs:  
   - token in the headers  
   
-Returns:  
-```ts
-{
-    token: string,
-    createdAt: number,
-    coins: number,
-    health: number,
-    xp: number,
-    attack: {
-        min: number,
-        max: number
-    },
-    defense: {
-        min: number,
-        max: number
-    },
-    cooldown: {
-        mining: {
-            last: number,
-            time: number
-        }
-    },
-    inventory: {
-        [id: string]: number
-    }
-}
-```
+Returns: [Player](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/Player.md)

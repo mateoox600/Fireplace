@@ -4,12 +4,4 @@ Needs:
   - token in the headers
   - itemId in the query
   
-Returns:  
-```ts
-{
-    id: string,
-    name: string,
-    description: string,
-    value: number
-}
-```
+Returns: [Item](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/item/Item.md)
