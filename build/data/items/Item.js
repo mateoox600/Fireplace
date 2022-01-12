@@ -4,9 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Items = void 0;
+const Fur_1 = __importDefault(require("./Fur"));
 const MembraneItem_1 = __importDefault(require("./MembraneItem"));
 const SmallMobCoreItem_1 = __importDefault(require("./SmallMobCoreItem"));
 exports.Items = [
     SmallMobCoreItem_1.default,
-    MembraneItem_1.default
+    MembraneItem_1.default,
+    Fur_1.default
 ];

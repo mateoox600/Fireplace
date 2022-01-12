@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const Item_1 = require("../data/items/Item");
 const PlayerManager_1 = __importDefault(require("../players/PlayerManager"));
-const router = express_1.Router();
+const router = (0, express_1.Router)();
 router.get('/sell', (req, res) => {
     const player = PlayerManager_1.default.getPlayer(req.headers.token);
     const itemId = req.query.itemId;

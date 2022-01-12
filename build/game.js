@@ -7,7 +7,7 @@ const express_1 = require("express");
 const HuntableEntity_1 = require("./data/entities/HuntableEntity");
 const PlayerManager_1 = __importDefault(require("./players/PlayerManager"));
 const Range_1 = __importDefault(require("./utils/Range"));
-const router = express_1.Router();
+const router = (0, express_1.Router)();
 router.get('/', (req, res) => {
     const player = PlayerManager_1.default.getPlayer(req.headers.token);
     res.json(Object.assign(Object.assign({}, player), { level: PlayerManager_1.default.calculateXpLevel(player), maxHealth: PlayerManager_1.default.calculateMaxHealth(player) }));
@@ -51,14 +51,12 @@ router.get('/hunt', (req, res) => {
         const rewards = {
             coins: Math.floor(entity.rewards.coins.rand()),
             xp: Math.floor(entity.rewards.xp.rand()),
-            health: Math.floor(entity.rewards.health.rand()),
             items: entity.rewards.items.map((v) => {
                 return { id: v.id, n: Math.floor(v.range.rand()) };
             })
         };
         player.coins += rewards.coins;
         player.xp += rewards.xp;
-        player.health = Math.min(player.health + rewards.health, PlayerManager_1.default.calculateMaxHealth(player));
         rewards.items.forEach((i) => {
             if (player.inventory[i.id])
                 player.inventory[i.id] += i.n;

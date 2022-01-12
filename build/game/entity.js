@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const Entity_1 = require("../data/entities/Entity");
 const HuntableEntity_1 = require("../data/entities/HuntableEntity");
-const router = express_1.Router();
+const router = (0, express_1.Router)();
 router.get('/', (req, res) => {
     const entityId = req.query.entityId;
     if (!entityId)

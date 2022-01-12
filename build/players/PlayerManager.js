@@ -11,7 +11,7 @@ class PlayerManager {
         return player;
     }
     static newPlayer() {
-        return this.updatePlayer(Player_1.defaultPlayer());
+        return this.updatePlayer((0, Player_1.defaultPlayer)());
     }
     static playerExist(token) {
         return __1.players.exists(`/${token}`);

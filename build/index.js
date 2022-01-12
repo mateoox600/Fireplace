@@ -10,7 +10,7 @@ const JsonDBConfig_1 = require("node-json-db/dist/lib/JsonDBConfig");
 const game_1 = __importDefault(require("./game"));
 const PlayerManager_1 = __importDefault(require("./players/PlayerManager"));
 const port = 55677;
-const app = express_1.default();
+const app = (0, express_1.default)();
 exports.players = new node_json_db_1.JsonDB(new JsonDBConfig_1.Config('players', true, false, '/'));
 const needToken = (req, res, next) => {
     const token = req.headers.token;

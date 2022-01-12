@@ -5,23 +5,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Range_1 = __importDefault(require("../../utils/Range"));
 exports.default = {
-    id: 'slime',
-    name: 'Slime',
-    description: 'A little blob of liquid contained in an easly breakeable membrane.',
-    health: new Range_1.default(10, 10),
-    defense: new Range_1.default(0, 0),
-    attack: new Range_1.default(1, 3),
+    id: 'wolf',
+    name: 'Wolf',
+    description: 'A wolf with long fur and deep eyes.',
+    health: new Range_1.default(25, 30),
+    defense: new Range_1.default(0, 2),
+    attack: new Range_1.default(3, 5),
     rewards: {
-        coins: new Range_1.default(2, 10),
-        xp: new Range_1.default(4, 12),
+        coins: new Range_1.default(5, 13),
+        xp: new Range_1.default(6, 18),
         items: [
             {
                 id: 'small-mob-core',
                 range: new Range_1.default(1, 1)
             },
             {
-                id: 'membrane',
-                range: new Range_1.default(0, 2)
+                id: 'fur',
+                range: new Range_1.default(1, 5)
             }
         ]
     }
