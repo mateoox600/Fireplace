@@ -5,7 +5,7 @@ import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
 import gameRouter from './game';
 import PlayerManager from './players/PlayerManager';
 
-const port = 55677;
+const port = 25611;
 const app = express();
 
 export const players = new JsonDB(new Config('players', true, false, '/'));

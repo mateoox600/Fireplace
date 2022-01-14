@@ -5,9 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultPlayer = void 0;
 const TokenManager_1 = __importDefault(require("../utils/TokenManager"));
+const PlayerManager_1 = __importDefault(require("./PlayerManager"));
 function defaultPlayer() {
+    let token = TokenManager_1.default.generateToken();
+    while (PlayerManager_1.default.playerExist(token))
+        token = TokenManager_1.default.generateToken();
     return {
-        token: TokenManager_1.default.generateToken(),
+        token,
         createdAt: Date.now(),
         coins: 0,
         health: 100,

@@ -1,4 +1,5 @@
 import TokenManager from '../utils/TokenManager';
+import PlayerManager from './PlayerManager';
 
 export default interface Player {
     token: string,
@@ -19,8 +20,10 @@ export default interface Player {
 }
 
 export function defaultPlayer(): Player {
+    let token = TokenManager.generateToken();
+    while(PlayerManager.playerExist(token)) token = TokenManager.generateToken();
     return {
-        token: TokenManager.generateToken(),
+        token,
         createdAt: Date.now(),
         coins: 0,
         health: 100,

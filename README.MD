@@ -1,4 +1,5 @@
 # RGRPG
+## cursehosting-mutual-07.cursehosting.com:25611  
 `/new` - create a new account.  
 `/game` - get account information (the endpoint and all his child endpoint require a token it the headers).  
 `/game/mine` - Mining endpoint.  
