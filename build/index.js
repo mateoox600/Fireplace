@@ -17,7 +17,7 @@ exports.players = new node_json_db_1.JsonDB(new JsonDBConfig_1.Config('players',
 const needToken = (req, res, next) => {
     const token = req.headers.token;
     if (!token)
-        return res.status(400).send('This endpoint require an token !');
+        return res.status(400).send('This endpoint require a token !');
     if (!PlayerManager_1.default.playerExist(token))
         return res.status(403).send('This token isn\'t valid !');
     next();
@@ -27,7 +27,7 @@ app.get('/new', (req, res) => {
     const newPlayer = PlayerManager_1.default.newPlayer();
     res.json({
         token: newPlayer.token,
-        warning: 'Don\'t give this token to anyone nor lose it'
+        warning: 'Don\'t give this token to anyone nor lose it.'
     });
 });
 app.use('/game/', needToken, game_1.default);

@@ -31,7 +31,7 @@ router.get('/mine', (req, res) => {
 router.get('/hunt', (req, res) => {
     const player = PlayerManager_1.default.getPlayer(req.headers.token);
     if (player.health < 1)
-        return res.send('you don\'t have enough health to do that !');
+        return res.status(400).send('you don\'t have enough health to do that !');
     const entityId = req.query.entityId;
     if (!entityId)
         return res.status(400).send('This endpoint require an huntable entity id !');
@@ -46,7 +46,7 @@ router.get('/hunt', (req, res) => {
         entityHealth -= Math.floor(Math.max(Range_1.default.rand(player.attack) - entity.defense.rand(), 0));
     }
     if (entityHealth > 0)
-        res.send(`You were killed during your fight with a ${entity.name}`);
+        res.send(`You were killed during your fight with a ${entity.name}.`);
     else {
         const rewards = {
             coins: Math.floor(entity.rewards.coins.rand()),
