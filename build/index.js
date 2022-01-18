@@ -9,8 +9,10 @@ const node_json_db_1 = require("node-json-db");
 const JsonDBConfig_1 = require("node-json-db/dist/lib/JsonDBConfig");
 const game_1 = __importDefault(require("./game"));
 const PlayerManager_1 = __importDefault(require("./players/PlayerManager"));
+const Logger_1 = __importDefault(require("./utils/Logger"));
 const port = 25611;
 const app = (0, express_1.default)();
+const logger = new Logger_1.default();
 exports.players = new node_json_db_1.JsonDB(new JsonDBConfig_1.Config('players', true, false, '/'));
 const needToken = (req, res, next) => {
     const token = req.headers.token;
@@ -20,6 +22,7 @@ const needToken = (req, res, next) => {
         return res.status(403).send('This token isn\'t valid !');
     next();
 };
+app.use(logger.logCallback);
 app.get('/new', (req, res) => {
     const newPlayer = PlayerManager_1.default.newPlayer();
     res.json({

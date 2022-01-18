@@ -4,9 +4,11 @@ import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
 
 import gameRouter from './game';
 import PlayerManager from './players/PlayerManager';
+import Logger from './utils/Logger';
 
 const port = 25611;
 const app = express();
+const logger = new Logger();
 
 export const players = new JsonDB(new Config('players', true, false, '/'));
 
@@ -19,6 +21,8 @@ const needToken = (req: Request, res: Response, next: NextFunction) => {
 
     next();
 };
+
+app.use(logger.logCallback);
 
 app.get('/new', (req, res) => {
     const newPlayer = PlayerManager.newPlayer();
