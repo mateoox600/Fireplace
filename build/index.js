@@ -22,7 +22,7 @@ const needToken = (req, res, next) => {
         return res.status(403).send('This token isn\'t valid !');
     next();
 };
-app.use(logger.logCallback);
+app.use(logger.logCallback.bind(logger));
 app.get('/new', (req, res) => {
     const newPlayer = PlayerManager_1.default.newPlayer();
     res.json({
@@ -32,5 +32,5 @@ app.get('/new', (req, res) => {
 });
 app.use('/game/', needToken, game_1.default);
 app.listen(port, () => {
-    console.log(`App listening on ${port}`);
+    logger.log(`App listening on ${port}`);
 });

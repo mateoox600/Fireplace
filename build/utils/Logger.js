@@ -1,34 +1,36 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var Colors;
-(function (Colors) {
-    Colors["Reset"] = "\u001B[0m";
-    Colors["Bright"] = "\u001B[1m";
-    Colors["Dim"] = "\u001B[2m";
-    Colors["Underscore"] = "\u001B[4m";
-    Colors["Blink"] = "\u001B[5m";
-    Colors["Reverse"] = "\u001B[7m";
-    Colors["Hidden"] = "\u001B[8m";
-    Colors["FgBlack"] = "\u001B[30m";
-    Colors["FgRed"] = "\u001B[31m";
-    Colors["FgGreen"] = "\u001B[32m";
-    Colors["FgYellow"] = "\u001B[33m";
-    Colors["FgBlue"] = "\u001B[34m";
-    Colors["FgMagenta"] = "\u001B[35m";
-    Colors["FgCyan"] = "\u001B[36m";
-    Colors["FgWhite"] = "\u001B[37m";
-    Colors["BgBlack"] = "\u001B[40m";
-    Colors["BgRed"] = "\u001B[41m";
-    Colors["BgGreen"] = "\u001B[42m";
-    Colors["BgYellow"] = "\u001B[43m";
-    Colors["BgBlue"] = "\u001B[44m";
-    Colors["BgMagenta"] = "\u001B[45m";
-    Colors["BgCyan"] = "\u001B[46m";
-    Colors["BgWhite"] = "\u001B[47m";
-})(Colors || (Colors = {}));
+const Colors_1 = __importDefault(require("./Colors"));
 class Logger {
+    constructor() {
+        this.Prefixs = {
+            Info: `${Colors_1.default.FgCyan}Info${Colors_1.default.Reset}`,
+            Warning: `${Colors_1.default.FgYellow}Warning${Colors_1.default.Reset}`,
+            Error: `${Colors_1.default.FgRed}Error${Colors_1.default.Reset}`,
+            Get: `${Colors_1.default.FgGreen}Get${Colors_1.default.Reset}`
+        };
+    }
+    print(str, prefix) {
+        process.stdout.write(`${this.Prefixs[prefix]} - ${str}\n`);
+    }
+    log(str) {
+        this.print(str, 'Info');
+        //console.log(`${Colors.FgCyan}Info${Colors.Reset} - ${str}`);
+    }
+    warning(warn) {
+        this.print(warn, 'Warning');
+        //console.log(`${Colors.FgYellow}Warning${Colors.Reset} - ${warn}`);
+    }
+    error(err) {
+        this.print(err, 'Error');
+        //console.log(`${Colors.FgRed}Error${Colors.Reset} - ${err}`);
+    }
     logCallback(req, res, next) {
-        console.log(`${Colors.FgGreen}${req.method}${Colors.Reset} - ${req.originalUrl}`);
+        this.print(req.originalUrl, 'Get');
+        //console.log(`${Colors.FgGreen}${req.method}${Colors.Reset} - ${req.originalUrl}`);
         next();
     }
 }

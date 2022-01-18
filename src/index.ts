@@ -22,7 +22,7 @@ const needToken = (req: Request, res: Response, next: NextFunction) => {
     next();
 };
 
-app.use(logger.logCallback);
+app.use(logger.logCallback.bind(logger));
 
 app.get('/new', (req, res) => {
     const newPlayer = PlayerManager.newPlayer();
@@ -36,5 +36,5 @@ app.get('/new', (req, res) => {
 app.use('/game/', needToken, gameRouter);
 
 app.listen(port, () => {
-    console.log(`App listening on ${port}`);
+    logger.log(`App listening on ${port}`);
 });
