@@ -1,8 +1,10 @@
 ## /game/hunt
 
-Needs:  
-  - token in the headers
-  - entityId in the query
+Headers:  
+  - **token** - A player token  
+
+Parameters:  
+  - **entityId** - The id of the entity to hunt  
   
 Returns:  
 ```ts

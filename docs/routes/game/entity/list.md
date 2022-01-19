@@ -1,6 +1,6 @@
 ## /game/entity/list
 
-Needs:  
-  - token in the headers
+Headers:  
+  - **token** - A player token 
   
-Returns: [AllEntity](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/entity/AllEntity.md) list
+Returns: [AllEntity](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/entity/AllEntity.md) ids list

@@ -1,7 +1,7 @@
 ## /game/mine
 
-Needs:  
-  - token in the headers  
+Headers:  
+  - **token** - A player token  
   
 Returns:  
 ```ts

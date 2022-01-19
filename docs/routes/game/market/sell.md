@@ -1,9 +1,11 @@
 ## /game/market/sell
 
-Needs:  
-  - token in the headers
-  - itemId in the query
-  - number in the query
+Headers:  
+  - **token** - A player token  
+
+Parameters:  
+  - **itemId** - The id of the item to sell
+  - **number** - The number of item to sell  
   
 Returns:  
 ```ts
