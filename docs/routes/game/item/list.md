@@ -2,5 +2,7 @@
 
 Headers:  
   - **token** - A player token  
-  
-Returns: [Item](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/item/Item.md) ids list
+
+Can Raise: [TokenNotFoundInHeaders](https://github.com/mateoox600/RGRPG/blob/master/docs/errors/TokenNotFoundInHeaders.md)
+
+Returns: [Item](https://github.com/mateoox600/RGRPG/blob/master/docs/structure/item/Item.md) ids list

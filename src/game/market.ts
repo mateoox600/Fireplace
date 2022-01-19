@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { Items } from '../data/items/Item';
 import PlayerManager from '../players/PlayerManager';
-import { ItemIdDoesntExistError, ItemNumberIsntValidError, NotEnoughItemError, RequireItemIdError, RequireItemNumberError } from '../utils/Error';
+import { ItemDoesntExistError, ItemNumberIsntValidError, NotEnoughItemError, RequireItemIdError, RequireItemNumberError } from '../utils/Error';
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.get('/sell', (req, res) => {
     if(!itemId) return res.status(400).send({ error: RequireItemIdError });
 
     const item = Items.find((item) => item.id === itemId);
-    if(!item) return res.status(400).send({ error: ItemIdDoesntExistError });
+    if(!item) return res.status(400).send({ error: ItemDoesntExistError });
 
     const itemNumber = Math.floor(Number(req.query.number));
     if(!req.query.number) return res.status(400).send({ error: RequireItemNumberError });

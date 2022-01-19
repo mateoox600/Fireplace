@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { Entities } from '../data/entities/Entity';
 import { HuntableEntities } from '../data/entities/HuntableEntity';
-import { RequireEntityIdError } from '../utils/Error';
+import { EntityDoesntExistError, RequireEntityIdError } from '../utils/Error';
 
 const router = Router();
 
@@ -10,7 +10,11 @@ router.get('/', (req, res) => {
 
     if(!entityId) return res.status(400).send({ error: RequireEntityIdError });
 
-    res.json(Entities.find((entity) => entity.id === entityId));
+    const entity = Entities.find((entity) => entity.id === entityId);
+
+    if(!entity) return res.status(404).send({ error: EntityDoesntExistError });
+
+    res.json();
 });
 
 router.get('/list', (req, res) => {

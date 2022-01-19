@@ -60,7 +60,7 @@ router.get('/hunt', (req, res) => {
         coins: 0,
         xp: 0,
         items: [],
-        death: true
+        died: true
     });
     else {
         const rewards = {
@@ -69,7 +69,7 @@ router.get('/hunt', (req, res) => {
             items: entity.rewards.items.map((v) => {
                 return { id: v.id, n: Math.floor(v.range.rand()) };
             }),
-            death: false
+            died: false
         };
 
         player.coins += rewards.coins;

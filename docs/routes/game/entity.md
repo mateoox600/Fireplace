@@ -5,5 +5,7 @@ Headers:
 
 Parameters:  
   - **entityId** - the id of the entity to get  
-  
-Returns: [AllEntity](https://github.com/mateoox600/RGRPG/blob/master/docs/docs/entity/AllEntity.md)
+
+Can Raise: [TokenNotFoundInHeaders](https://github.com/mateoox600/RGRPG/blob/master/docs/errors/TokenNotFoundInHeaders.md), [RequireEntityId](https://github.com/mateoox600/RGRPG/blob/master/docs/errors/entity/RequireEntityId.md) or [EntityDoesntExist](https://github.com/mateoox600/RGRPG/blob/master/docs/errors/entity/EntityDoesntExist.md)
+
+Returns: [AllEntity](https://github.com/mateoox600/RGRPG/blob/master/docs/structure/entity/AllEntity.md)

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Items } from '../data/items/Item';
-import { RequireItemIdError } from '../utils/Error';
+import { ItemDoesntExistError, RequireItemIdError } from '../utils/Error';
 
 const router = Router();
 
@@ -9,7 +9,11 @@ router.get('/', (req, res) => {
 
     if(!itemId) return res.status(400).send({ error: RequireItemIdError });
 
-    res.json(Items.find((item) => item.id === itemId));
+    const item = Items.find((item) => item.id === itemId);
+
+    if(!item) return res.status(404).send({ error: ItemDoesntExistError });
+
+    res.json(item);
 });
 
 router.get('/list', (req, res) => {

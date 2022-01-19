@@ -12,7 +12,7 @@ export const EntityDoesntExistOrItIsntHuntableError = 'EntityDoesntExistOrItIsnt
 
 // Item Errors
 export const RequireItemIdError = 'RequireItemId';
-export const ItemIdDoesntExistError = 'ItemIdDoesntExist';
+export const ItemDoesntExistError = 'ItemDoesntExist';
 
 export const RequireItemNumberError = 'RequireItemNumber';
 export const ItemNumberIsntValidError = 'ItemNumberIsntValid';
