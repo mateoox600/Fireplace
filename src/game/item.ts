@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { Items } from '../data/items/Item';
+import { RequireItemIdError } from '../utils/Error';
 
 const router = Router();
 
 router.get('/', (req, res) => {
     const itemId = req.query.itemId;
 
-    if(!itemId) return res.status(400).send('This endpoint require an item id !');
+    if(!itemId) return res.status(400).send({ error: RequireItemIdError });
 
     res.json(Items.find((item) => item.id === itemId));
 });

@@ -4,6 +4,7 @@ import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
 
 import gameRouter from './game';
 import PlayerManager from './players/PlayerManager';
+import { TokenNotFoundInHeadersError, TokenNotValidError } from './utils/Error';
 import Logger from './utils/Logger';
 
 const port = 25611;
@@ -15,9 +16,9 @@ export const players = new JsonDB(new Config('players', true, false, '/'));
 const needToken = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.token;
 
-    if(!token) return res.status(400).send('This endpoint require a token !');
+    if(!token) return res.status(400).send({ error: TokenNotFoundInHeadersError });
 
-    if(!PlayerManager.playerExist(token as string)) return res.status(403).send('This token isn\'t valid !');
+    if(!PlayerManager.playerExist(token as string)) return res.status(403).send({ error: TokenNotValidError });
 
     next();
 };

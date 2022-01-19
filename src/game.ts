@@ -38,15 +38,15 @@ router.get('/mine', (req, res) => {
 router.get('/hunt', (req, res) => {
     const player = PlayerManager.getPlayer(req.headers.token as string);
 
-    if(player.health < 1) return res.status(400).send('you don\'t have enough health to do that !');
+    if(player.health < 1) return res.status(400).send({ error: NotEnoughHealthError });
 
     const entityId = req.query.entityId;
 
-    if(!entityId) return res.status(400).send('This endpoint require an huntable entity id !');
+    if(!entityId) return res.status(400).send({ error: RequireHuntableEntityIdError });
 
     const entity = HuntableEntities.find((entity) => entity.id === entityId);
 
-    if(!entity) return res.status(404).send('This entity doesn\'t exist or it isn\'t an huntable entity !');
+    if(!entity) return res.status(404).send({ error: EntityDoesntExistOrItIsntHuntableError });
 
     let entityHealth = Math.floor(entity.health.rand());
 
@@ -56,14 +56,20 @@ router.get('/hunt', (req, res) => {
         entityHealth -= Math.floor(Math.max(Range.rand(player.attack) - entity.defense.rand(), 0));
     }
     
-    if(entityHealth > 0) res.send(`You were killed during your fight with a ${entity.name}.`);
+    if(entityHealth > 0) res.send({
+        coins: 0,
+        xp: 0,
+        items: [],
+        death: true
+    });
     else {
         const rewards = {
             coins: Math.floor(entity.rewards.coins.rand()),
             xp: Math.floor(entity.rewards.xp.rand()),
             items: entity.rewards.items.map((v) => {
                 return { id: v.id, n: Math.floor(v.range.rand()) };
-            })
+            }),
+            death: false
         };
 
         player.coins += rewards.coins;
@@ -88,6 +94,7 @@ import itemRouter from './game/item';
 router.use('/item/', itemRouter);
 
 import marketRouter from './game/market';
+import { EntityDoesntExistOrItIsntHuntableError, NotEnoughHealthError, RequireHuntableEntityIdError } from './utils/Error';
 router.use('/market/', marketRouter);
 
 export default router;
