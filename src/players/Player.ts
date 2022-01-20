@@ -16,7 +16,6 @@ export default interface Player {
         }
     },
     inventory: { [id: string]: number }
-// eslint-disable-next-line semi
 }
 
 export function defaultPlayer(): Player {

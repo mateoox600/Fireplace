@@ -27,10 +27,8 @@
             "error",
             "single"
         ],
-        "semi": [
-            "error",
-            "always"
-        ],
+        "semi": "off",
+        "@typescript-eslint/semi": ["error"],
         "curly": [
             "error",
             "multi"
