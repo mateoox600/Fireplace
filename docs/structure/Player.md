@@ -5,7 +5,7 @@
     createdAt: number,
     coins: number,
     health: number,
-    maxHealth: number
+    maxHealth: number,
     xp: number,
     level: number,
     attack: { min: number, max: number },
