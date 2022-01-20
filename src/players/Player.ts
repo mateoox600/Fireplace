@@ -1,4 +1,4 @@
-import TokenManager from '../utils/TokenManager';
+import TokenManager from './TokenManager';
 import PlayerManager from './PlayerManager';
 
 export default interface Player {
