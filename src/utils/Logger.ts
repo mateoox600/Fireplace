@@ -26,9 +26,13 @@ export default class Logger {
         this.print(err, 'Error');
     }
 
-    public logCallback(req: Request, res: Response, next: NextFunction) {
+    private logCallback(req: Request, res: Response, next: NextFunction) {
         this.print(req.originalUrl, 'Request', (prefix) => prefix.replace('%r', req.method));
         next();
+    }
+
+    public getExpressRequestLogCallback() {
+        return this.logCallback.bind(this);
     }
 
 }

@@ -23,7 +23,7 @@ const needToken = (req: Request, res: Response, next: NextFunction) => {
     next();
 };
 
-app.use(logger.logCallback.bind(logger));
+app.use(logger.getExpressRequestLogCallback());
 
 app.get('/new', (req, res) => {
     const newPlayer = PlayerManager.newPlayer();
