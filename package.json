@@ -1,12 +1,17 @@
 {
   "name": "requestplay",
   "version": "1.0.0",
-  "private": true,
+  "description": "An rpg game that played via http requests",
+  "keywords": [
+    "game",
+    "rpg"
+  ],
+  "author": "Mateoox600",
   "scripts": {
     "start": "ts-node src/",
     "build": "del /Q build && tsc"
   },
-  "license": "ISC",
+  "license": "GPL-3.0-only",
   "dependencies": {
     "express": "^4.17.2",
     "node-json-db": "^1.4.1"
