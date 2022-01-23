@@ -1,10 +1,11 @@
 {
   "name": "fireplace",
   "version": "1.0.0",
-  "description": "An rpg game that played via http requests",
+  "description": "An rpg game that played via http requests.",
   "keywords": [
     "game",
-    "rpg"
+    "rpg",
+    "fireplace"
   ],
   "author": "Mateoox600 and Voltan_Fire",
   "scripts": {
